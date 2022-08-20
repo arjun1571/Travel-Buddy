@@ -159,6 +159,28 @@ function calculateCost(obj){
   const taxTk= taxAmount.innerText = calculation * 20 / 100;
 
   totalAmount.innerText = calculation + taxTk;
+  document.getElementById("distance-input").value="";
+  document.getElementById("quantity-input").value="";
   
 
 }
+
+
+document.getElementById("search-btn").addEventListener("click",function(){
+  const searchValue = document.getElementById("search-input").value;
+  // console.log(searchValue);
+  for(let i=0; i<servicesArr.length; i++){
+    const element = servicesArr[i];
+    // console.log(element);
+    if(searchValue.toLowerCase() == element.vehicle.toLowerCase()){
+      document.getElementById("main-content").innerHTML="";
+      displayServices(element);
+      document.getElementById("search-input").value="";
+      return
+
+    }
+
+  }
+  alert("Nothing Found with your input");
+  document.getElementById("search-input").value="";
+})
