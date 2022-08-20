@@ -94,7 +94,7 @@ function handleBook(stu){
       <small class="text-muted">Tax (20%) : <span id="tax"></span> </small></small>
     </p>
     <p class="card-text">
-      <small class="text-muted">Total Cost : </small></small>
+      <small class="text-muted">Total Cost : <span id="totalAmount"></span> </small></small>
     </p>
     <div class="d-flex flex-column">
       <input class="form-control m-2" id="distance-input" type="number" placeholder="koto kilo jaba" aria-label="Search" />
@@ -127,12 +127,15 @@ function calculateCost(obj){
   const distanceInput = document.getElementById("distance-input").value;
   const quantityInput = document.getElementById("quantity-input").value;
   const taxAmount = document.getElementById("tax");
+  const totalAmount = document.getElementById("totalAmount");
 
   const fare = document.getElementById("fare-div");
   const calculation = distanceInput * quantityInput * obj.farePerKilo;
   fare.innerHTML=calculation;
   
- taxAmount.innerText = calculation * 20 / 100;
+  const taxTk= taxAmount.innerText = calculation * 20 / 100;
+
+  totalAmount.innerText = calculation + taxTk;
   
 
 }
