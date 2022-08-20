@@ -5,7 +5,7 @@ var carObject = {
   imageUrl:
     "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
 
-  farePerKilo: 2,
+  farePerKilo: 3,
   capacity: 2,
   description:
     "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga eligendi veritatis expedita, dicta aut eum itaque ut tempora alias laudantium?",
@@ -16,7 +16,7 @@ var busObject = {
   imageUrl:
     "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YnVzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
 
-  farePerKilo: 3,
+  farePerKilo: 4,
   capacity: 4,
   description:
     "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga eligendi veritatis expedita, dicta aut eum itaque ut tempora alias laudantium?",
@@ -77,6 +77,7 @@ displayServices(busObject);
 // handle booking info 
 function handleBook(stu){
   const modalBody = document.getElementById("modal-body");
+  const obj = JSON.stringify(stu);
   modalBody.innerHTML = `
   <div class="card mx-auto" style="width: 28rem;">
   <img src="${stu.imageUrl}" class="card-img-top" alt="...">
@@ -84,14 +85,22 @@ function handleBook(stu){
     <h5 class="card-title">Vehicle Mod : ${stu.vehicle}</h5>
     <p class="card-text">${stu.description}</p>
     <p class="card-text">
-      <small class="text-muted">Fare per kilo : ${stu.farePerKilo}</small> <small class="text-muted">Capacity:${stu.capacity}</small>
+      <small class="text-muted">Fare per kilo : ${stu.farePerKilo}</small> <small class="text-muted">Capacity: ${stu.capacity}</small>
+    </p>
+    <p class="card-text">
+      <small  class="text-muted">Fare : <span id="fare-div"></span> </small></small>
+    </p>
+    <p class="card-text">
+      <small class="text-muted">Tax (20%) : <span id="tax"></span> </small></small>
+    </p>
+    <p class="card-text">
+      <small class="text-muted">Total Cost : </small></small>
     </p>
     <div class="d-flex flex-column">
-      <input class="form-control m-2" type="search" placeholder="Search" aria-label="Search" />
-      <input class="form-control m-2" type="search" placeholder="Search" aria-label="Search" />
-      <input class="form-control m-2" type="search" placeholder="Search" aria-label="Search" />
-      <button class="btn btn-outline-success m-2" type="submit">
-       Search
+      <input class="form-control m-2" id="distance-input" type="number" placeholder="koto kilo jaba" aria-label="Search" />
+      <input class="form-control m-2" id="quantity-input" type="number" placeholder="koita gari lagbe" aria-label="Search" />
+      <button onclick='calculateCost(${obj})' class="btn btn-outline-success m-2" type="submit">
+       Submit
       </button>
     </div>
   </div>
@@ -111,5 +120,19 @@ function handleBook(stu){
 // `
 // modalBody.appendChild(div);
 
+
+}
+
+function calculateCost(obj){
+  const distanceInput = document.getElementById("distance-input").value;
+  const quantityInput = document.getElementById("quantity-input").value;
+  const taxAmount = document.getElementById("tax");
+
+  const fare = document.getElementById("fare-div");
+  const calculation = distanceInput * quantityInput * obj.farePerKilo;
+  fare.innerHTML=calculation;
+  
+ taxAmount.innerText = calculation * 20 / 100;
+  
 
 }
