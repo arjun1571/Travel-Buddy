@@ -184,3 +184,9 @@ document.getElementById("search-btn").addEventListener("click",function(){
   alert("Nothing Found with your input");
   document.getElementById("search-input").value="";
 })
+
+document.getElementById("save").addEventListener("click",function(){
+  const bg = document.getElementById("modal-body").innerHTML="Thank You for your order";
+
+  bg.document.style.backgroundColor = "red";
+})
