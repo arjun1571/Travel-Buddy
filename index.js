@@ -33,6 +33,21 @@ var bikeObject = {
   description:
     "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga eligendi veritatis expedita, dicta aut eum itaque ut tempora alias laudantium?",
 };
+var bootObject = {
+  vehicle: "Boot",
+  imageUrl:
+    "https://images.unsplash.com/photo-1613690399151-65ea69478674?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y29udGFpbmVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+
+  farePerKilo: 5,
+
+  capacity: 10,
+
+  description:
+    "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga eligendi veritatis expedita, dicta aut eum itaque ut tempora alias laudantium?",
+};
+
+
+const servicesArr = [bikeObject,carObject,busObject,bootObject];
 
 function displayServices(services) {
   const mainSection = document.getElementById("main-content");
@@ -70,9 +85,17 @@ function displayServices(services) {
   mainSection.appendChild(div);
 
 }
-displayServices(carObject);
-displayServices(bikeObject);
-displayServices(busObject);
+// displayServices(carObject);
+// displayServices(bikeObject);
+// displayServices(busObject);
+
+function displayServicesArr(arr){
+  for(let i=0; i<arr.length; i++){
+    const element = arr[i];
+    displayServices(element)
+  }
+}
+displayServicesArr(servicesArr);
 
 // handle booking info 
 function handleBook(stu){
